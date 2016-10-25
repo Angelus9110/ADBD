@@ -1,6 +1,6 @@
 CREATE TABLE Titular( DNI_CIF varchar(9) NOT NULL, Domicilio varchar(255) NOT NULL,
 CP int, Nombre varchar(255), Apellidos varchar(255), Nombre_empresa varchar(255),
-Fecha_nacimiento date), PRIMARY KEY (DNI_CIF));
+Fecha_nacimiento date, PRIMARY KEY (DNI_CIF));
 
 CREATE TABLE Licencia( Numero_licencia int NOT NULL,
 Tipo_licencia ENUM('Animal peligroso','Explotacion'), Fecha_expedicion DATE,
