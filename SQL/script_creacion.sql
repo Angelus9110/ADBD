@@ -14,14 +14,13 @@ Capa varchar(255), Numero_censo varchar(255), Numero_microchip int,
 Anio_de_nacimiento DATE, PRIMARY KEY (Numero_identificacion));
 
 CREATE TABLE Titularidad( Numero_identificacion int NOT NULL, DNI_CIF varchar(9) NOT NULL,
-Fecha_inicio DATE, Fecha_fin DATE, PRIMARY KEY(Numero_identificacion, DNI_CIF),
-FOREIGN KEY(Numero_identificacion) REFERENCES Animal (Numero_identificacion),
-FOREIGN KEY(DNI_CIF) REFERENCES Titular (DNI_CIF));
+Fecha_inicio DATE NOT NULL, Fecha_fin DATE, PRIMARY KEY(Numero_identificacion, DNI_CIF, Fecha_inicio),
+FOREIGN KEY(Numero_identificacion, DNI_CIF) REFERENCES Animal (Numero_identificacion), Titular (DNI_CIF));
 
 
 CREATE TABLE Sancion( Numero_sancion int NOT NULL PRIMARY KEY, Cuantia float,
 Fecha_sancion DATE, ID_legal_infraccion varchar(255), Gravedad varchar(255),
 Descripcion varchar(1000), Tipo_medida_cautelar ENUM('Retirada preventiva','Clausura preventiva','Ninguna'),
 Fecha_inicio_medida_cautelar DATE, Fecha_fin_medida_cautelar DATE, DNI_CIF varchar(9),
-Numero_identificacion int, FOREIGN KEY(Numero_identificacion) REFERENCES Titularidad (Numero_identificacion),
-FOREIGN KEY(DNI_CIF) REFERENCES Titularidad (DNI_CIF));
+Numero_identificacion int, FOREIGN KEY(Numero_identificacion, DNI_CIF)
+REFERENCES Titularidad (Numero_identificacion, DNI_CIF));
