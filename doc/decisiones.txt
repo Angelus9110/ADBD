@@ -1,0 +1,8 @@
+2016/09/27
+Sobre razas de perro peligrosas, se deja la responsabilidad al funcionario de decidir qué perro es peligroso o no, en función de lo indicado en los anexos de la ordenanza municipal.
+
+Se separará el CP del domicilio, tanto en el animal, como en los titulares.
+
+Se hara superclase de Animal. De Personas, aun no.
+
+La relacion entre Sancion y Titular es redundante, ya que se puede llegar desde sanción a titular a traves de animal censado con la fecha de forma EXACTAMENTE EQUIVALENTE.
