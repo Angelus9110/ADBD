@@ -1,0 +1,40 @@
+1 - Sólo los mayores de 18 años pueden tener un animal
+
+context Titular
+
+inv: self.fecha_nacimiento - Fecha_actual > 18
+
+
+2 - Los titulares que tengan animales potencialmente peligrosos deben tener la licencia correspondiente
+
+context Titular
+
+inv: self.animal_peligroso = true -> exists(l | l.tipo_licencia = animal_peligroso )
+
+
+3 - Las empresas deben tener la licencia de explotación
+
+context Titular
+
+inv: self.nombre_empresa -> exists(l | l.tipo_licencia = explotacion)
+
+
+4 - La licencia de animales peligrosos tiene una validez de 5 años 
+
+context Licencia
+
+inv: self.fecha_expedicion - Fecha actual <= 5
+
+
+5 - Infracciones  graves (más de una falta leve, en el mismo año, por la misma causa)
+
+context Titular
+
+inv: self.sancion.gravedad = grave -> exists(s1, s2 | (s1.gravedad = leve and 2.gravedad = leve) and (abs(s1.fecha - s2.fecha) <= 365) and (s1.id_legal_infraccion = s2.id_legal_infraccion))
+
+
+6 - Infracciones muy graves (más de una falta grave, en el mismo año, por la misma causa)
+
+context Titular
+
+inv: self.sancion.gravedad = muy_grave -> exists(s1, s2 | (s1.gravedad = grave and 2.gravedad = grave) and (abs(s1.fecha - s2.fecha) <= 365) and (s1.id_legal_infraccion = s2.id_legal_infraccion))
