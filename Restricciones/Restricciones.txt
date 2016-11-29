@@ -23,7 +23,7 @@ inv: self.nombre_empresa -> exists(l | l.tipo_licencia = explotacion)
 
 context Licencia
 
-inv: self.fecha_expedicion - Fecha actual <= 5
+inv: self.fecha_expedicion - get_Fecha_actual <= 5
 
 
 5 - Infracciones  graves (más de una falta leve, en el mismo año, por la misma causa)
