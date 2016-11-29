@@ -23,7 +23,7 @@ cp int, pais_origen varchar(255), PRIMARY KEY (numero_identificacion));
 
 CREATE TABLE ANIMAL_CENSADO( numero_identificacion int NOT NULL, raza varchar(255),
 aptitud varchar(255), capa varchar(255), numero_censo varchar(255),
-numero_microchip int, anno_nacimiento DATE,
+numero_microchip int, anno_nacimiento YEAR,
 PRIMARY KEY (numero_identificacion), FOREIGN KEY (numero_identificacion) REFERENCES ANIMAL (numero_identificacion));
 
 CREATE TABLE TITULARIDAD( numero_identificacion int NOT NULL, dni_cif varchar(9) NOT NULL,
@@ -39,29 +39,29 @@ FOREIGN KEY(numero_identificacion, dni_cif)
 REFERENCES TITULARIDAD (numero_identificacion, dni_cif));
 
 
-INSERT INTO TITULAR VALUES ('12052808A','Calle Cerrada Alajuela 37', 13001, 'Gabriel', 'Muñoz Perez', '11-01-1975', null);
-INSERT INTO TITULAR VALUES ('01021428K','Calle Calvario 23', 13004, 'Miguel Angel', 'Trillo Carro', '03-06-1985', null);
-INSERT INTO TITULAR VALUES ('65477863Z','Calle Mayor 12', 13006, 'Luis', 'Recuero Nogues', '25-01-1975', null);
-INSERT INTO TITULAR VALUES ('38866604P','Calle Real 34', 13010, 'Ricardo', 'Diez Vilaplana', '02-08-1965', null);
-INSERT INTO TITULAR VALUES ('67505087N','Avenida Diagonal 6', 13004, 'Armando', 'Bronca Segura', '07-03-1973', null);
-INSERT INTO TITULAR VALUES ('95244324J','Calle del Molino 9', 13012, 'Domingo', 'Diaz Festivo', '06-05-1984', null);
-INSERT INTO TITULAR VALUES ('05821682Z','Calle del Castillo 4', 13007, 'Melchor', 'Gaspar Baltasar', '25-06-1963', null);
-INSERT INTO TITULAR VALUES ('06588617Z','Plaza España 23', 13001, 'Ricardo', 'Tello Castro', '13-02-1986', null);
-INSERT INTO TITULAR VALUES ('86587415M','Paseo de los sauces 34', 13005 , 'Daniel', 'Dios Satan', '25-04-1984', null);
-INSERT INTO TITULAR VALUES ('44729765D','Calle Evergreen Terrace 743', 13024, 'Esteban', 'Dios Espino', '12-12-1972', null);
-INSERT INTO TITULAR VALUES ('27441023E','Calle Obregon 21', 13006, 'Vicente', 'Marato Berlanga', '15-11-1976', null);
-INSERT INTO TITULAR VALUES ('35185176Y','Calle Falsa 123', 13013, 'Felipe', 'Abreu Lapuerto', '12-07-1956', null);
-INSERT INTO TITULAR VALUES ('38485868M','Calle Alarcos 34', 13017, 'Elena', 'Nito Del Bosque', '14-07-1992', null);
-INSERT INTO TITULAR VALUES ('11331763P','Calle Mayor 13', 13006, 'Lucia', 'Cuervo Aguilar', '16-05-1990', null);
-INSERT INTO TITULAR VALUES ('58996810Q','Plaza Rinconada 5', 13013, 'Montserrat', 'Curto Batallas', '06-05-18-1989', null);
-INSERT INTO TITULAR VALUES ('48826660Y','Calle San Miguel 6', 13015, 'Alicia', 'Nuñez Bonillo', '12-03-1886', null);
-INSERT INTO TITULAR VALUES ('59358825B','Paseo de Belen 15', 13004, 'Maria', 'Dolores de Cospedal', '14-06-1969', null);
-INSERT INTO TITULAR VALUES ('37558515K','Calle Platero 34', 13009, 'Juana', 'Danza Infatiles', '14-12-1992', null);
-INSERT INTO TITULAR VALUES ('70595906M','Avenida Miguel de Unamuno 51', 13005, 'Olga', 'Raposo Brenes', '17-04-1988', null);
-INSERT INTO TITULAR VALUES ('88337440Y','Calle del Castillo 9', 13004, 'Marta', 'Capo Corleone', '26-05-1967', null);
-INSERT INTO TITULAR VALUES ('33167590A','Plaza Mayor 3', 13006, 'Maria Pilar', 'Valladares Poyatos', '13-06-1972', null);
-INSERT INTO TITULAR VALUES ('26645581N','Calle Alondras 19', 13006, 'Antonia', 'Casade Chamizo', '17-08-1988', null);
-INSERT INTO TITULAR VALUES ('11477333B','Plaza de la Iglesia 3', 13002, 'Ana Isabel', 'Alvarez Barrado', '05-05-1995', null);
+INSERT INTO TITULAR VALUES ('12052808A','Calle Cerrada Alajuela 37', 13001, 'Gabriel', 'Muñoz Perez', '1975-01-11', null);
+INSERT INTO TITULAR VALUES ('01021428K','Calle Calvario 23', 13004, 'Miguel Angel', 'Trillo Carro', '1985-03-06', null);
+INSERT INTO TITULAR VALUES ('65477863Z','Calle Mayor 12', 13006, 'Luis', 'Recuero Nogues', '1975-07-01', null);
+INSERT INTO TITULAR VALUES ('38866604P','Calle Real 34', 13010, 'Ricardo', 'Diez Vilaplana', '1965-02-17', null);
+INSERT INTO TITULAR VALUES ('67505087N','Avenida Diagonal 6', 13004, 'Armando', 'Bronca Segura', '1973-07-03', null);
+INSERT INTO TITULAR VALUES ('95244324J','Calle del Molino 9', 13012, 'Domingo', 'Diaz Festivo', '1984-06-05', null);
+INSERT INTO TITULAR VALUES ('05821682Z','Calle del Castillo 4', 13007, 'Melchor', 'Gaspar Baltasar', '1963-08-06', null);
+INSERT INTO TITULAR VALUES ('06588617Z','Plaza España 23', 13001, 'Ricardo', 'Tello Castro', '1986-11-02', null);
+INSERT INTO TITULAR VALUES ('86587415M','Paseo de los sauces 34', 13005 , 'Daniel', 'Dios Satan', '1984-02-24', null);
+INSERT INTO TITULAR VALUES ('44729765D','Calle Evergreen Terrace 743', 13024, 'Esteban', 'Dios Espino', '1972-12-12', null);
+INSERT INTO TITULAR VALUES ('27441023E','Calle Obregon 21', 13006, 'Vicente', 'Marato Berlanga', '1976-03-11', null);
+INSERT INTO TITULAR VALUES ('35185176Y','Calle Falsa 123', 13013, 'Felipe', 'Abreu Lapuerto', '1956-12-07', null);
+INSERT INTO TITULAR VALUES ('38485868M','Calle Alarcos 34', 13017, 'Elena', 'Nito Del Bosque', '1992-04-30', null);
+INSERT INTO TITULAR VALUES ('11331763P','Calle Mayor 13', 13006, 'Lucia', 'Cuervo Aguilar', '1990-08-05', null);
+INSERT INTO TITULAR VALUES ('58996810Q','Plaza Rinconada 5', 13013, 'Montserrat', 'Curto Batallas', '1958-05-16', null);
+INSERT INTO TITULAR VALUES ('48826660Y','Calle San Miguel 6', 13015, 'Alicia', 'Nuñez Bonillo', '1959-12-03', null);
+INSERT INTO TITULAR VALUES ('59358825B','Paseo de Belen 15', 13004, 'Maria', 'Dolores de Cospedal', '1969-05-19', null);
+INSERT INTO TITULAR VALUES ('37558515K','Calle Platero 34', 13009, 'Juana', 'Danza Infatiles', '1992-11-12', null);
+INSERT INTO TITULAR VALUES ('70595906M','Avenida Miguel de Unamuno 51', 13005, 'Olga', 'Raposo Brenes', '1988-12-04', null);
+INSERT INTO TITULAR VALUES ('88337440Y','Calle del Castillo 9', 13004, 'Marta', 'Capo Corleone', '1967-05-05', null);
+INSERT INTO TITULAR VALUES ('33167590A','Plaza Mayor 3', 13006, 'Maria Pilar', 'Valladares Poyatos', '1972-03-26', null);
+INSERT INTO TITULAR VALUES ('26645581N','Calle Alondras 19', 13006, 'Antonia', 'Casade Chamizo', '1988-04-08', null);
+INSERT INTO TITULAR VALUES ('11477333B','Plaza de la Iglesia 3', 13002, 'Ana Isabel', 'Alvarez Barrado', '1995-05-05', null);
 INSERT INTO TITULAR VALUES ('A16837239','Avenida del Hierro 23', 13016, null, null, null, 'Cooperativa Ganaderos Alcolea de Calatrava');
 INSERT INTO TITULAR VALUES ('D48985279','Calle del Plomo 45', 13016, null, null, null, 'Industrias Pesadas Piedrabuena');
 INSERT INTO TITULAR VALUES ('P94928678','Calle del Acero 7', 13016, null, null, null, 'Explotacion Malagon');
@@ -105,44 +105,56 @@ INSERT INTO ANIMAL_CENSADO VALUES (8, 'Persa', 'no', 'Blanco', '8', 69995, '2007
 INSERT INTO ANIMAL_CENSADO VALUES (22, 'Labrador', 'no', 'Amarillo', '9', 69995, '2011');
 INSERT INTO ANIMAL_CENSADO VALUES (23, 'Pastor Alemán', 'no', 'Negro', '10', 69995, '2008');
 INSERT INTO ANIMAL_CENSADO VALUES (26, 'Scottish Fold', 'no', 'Ocre', '11', 69995, '2004');
-INSERT INTO ANIMAL_CENSADO VALUES (27 'Bengalí', 'no', 'Marrón', '12', 69995, '2015');
+INSERT INTO ANIMAL_CENSADO VALUES (27, 'Bengalí', 'no', 'Marrón', '12', 69995, '2015');
 
-INSERT INTO LICENCIA VALUES (1, '12052808A', 'Animal peligroso', '10-11-1999');
-INSERT INTO LICENCIA VALUES (2, '01021428K', 'Animal peligroso', '05-07-2008');
-INSERT INTO LICENCIA VALUES (3, '48826660Y', 'Animal peligroso', '09-03-2000');
-INSERT INTO LICENCIA VALUES (4, '59358825B', 'Animal peligroso', '18-12-2014');
-INSERT INTO LICENCIA VALUES (5, 'A16837239', 'Explotacion', '16-08-2000');
-INSERT INTO LICENCIA VALUES (6, 'D48985279', 'Explotacion', '24-01-2002');
-INSERT INTO LICENCIA VALUES (7, 'P94928678', 'Explotacion', '25-06-2013');
+INSERT INTO LICENCIA VALUES (1, '12052808A', 'Animal peligroso', '1999-10-11');
+INSERT INTO LICENCIA VALUES (2, '01021428K', 'Animal peligroso', '2008-05-07');
+INSERT INTO LICENCIA VALUES (3, '48826660Y', 'Animal peligroso', '2000-03-09');
+INSERT INTO LICENCIA VALUES (4, '59358825B', 'Animal peligroso', '2014-12-18');
+INSERT INTO LICENCIA VALUES (5, 'A16837239', 'Explotacion', '2000-08-16');
+INSERT INTO LICENCIA VALUES (6, 'D48985279', 'Explotacion', '2002-01-24');
+INSERT INTO LICENCIA VALUES (7, 'P94928678', 'Explotacion', '2013-06-25');
 
-INSERT INTO SANCION VALUES (1, 00423, '12052808A', 100.0, '03-08-2013', '005244F', 'Leve', 'Incumplimiento del artículo 10 sobre autorización de tenencia', null, null, null);
-INSERT INTO SANCION VALUES (2, 04784, '12052808A', 100.0, '21-11-2015', '005235F', 'Leve', 'Incumplimiento del artículo 13.3 sobre limpieza urbana y salud pública', null, null, null);
-INSERT INTO SANCION VALUES (3, 05319, '48826660Y', 450.0, '10-04-2014', '004674L', 'Grave', 'Incumplimiento del artículo 9.1 referente a prohibiciones específicas', null, null, null);
+INSERT INTO TITULARIDAD VALUES (1, '12052808A', '2002-03-12', null);
+INSERT INTO TITULARIDAD VALUES (2, '12052808A', '2010-01-06', null);
+INSERT INTO TITULARIDAD VALUES (3, '01021428K', '2009-06-05', null);
+INSERT INTO TITULARIDAD VALUES (4, '65477863Z', '2014-03-18', null);
+INSERT INTO TITULARIDAD VALUES (5, '38866604P', '2016-02-08', null);
+INSERT INTO TITULARIDAD VALUES (6, '67505087N', '1999-08-04', '2012-09-10');
+INSERT INTO TITULARIDAD VALUES (7, '95244324J', '2006-05-07', null);
+INSERT INTO TITULARIDAD VALUES (8, '05821682Z', '2007-09-11', '2016-01-04');
+INSERT INTO TITULARIDAD VALUES (9, '06588617Z', '2013-01-31', null);
+INSERT INTO TITULARIDAD VALUES (10, '86587415M', '2006-04-09', null);
+INSERT INTO TITULARIDAD VALUES (11, '44729765D', '2003-09-03', null);
+INSERT INTO TITULARIDAD VALUES (12, '27441023E', '2007-03-12', null);
+INSERT INTO TITULARIDAD VALUES (13, '35185176Y', '2014-04-07', null);
+INSERT INTO TITULARIDAD VALUES (14, '38485868M', '2014-04-06', null);
+INSERT INTO TITULARIDAD VALUES (15, '11331763P', '2004-01-06', null);
+INSERT INTO TITULARIDAD VALUES (16, '58996810Q', '2008-11-12', null);
+INSERT INTO TITULARIDAD VALUES (17, '48826660Y', '2001-03-26', '2012-07-05');
+INSERT INTO TITULARIDAD VALUES (18, '59358825B', '2009-05-06', null);
+INSERT INTO TITULARIDAD VALUES (19, '37558515K', '2002-12-02', null);
+INSERT INTO TITULARIDAD VALUES (20, '70595906M', '2005-01-01', null);
+INSERT INTO TITULARIDAD VALUES (21, '88337440Y', '2001-06-26', null);
+INSERT INTO TITULARIDAD VALUES (22, '33167590A', '2011-04-30', '2016-04-03');
+INSERT INTO TITULARIDAD VALUES (23, '26645581N', '2008-07-12', null);
+INSERT INTO TITULARIDAD VALUES (24, '11477333B', '2001-09-08', null);
+INSERT INTO TITULARIDAD VALUES (25, 'A16837239', '2011-02-12', null);
+INSERT INTO TITULARIDAD VALUES (26, 'D48985279', '2004-04-22', null);
+INSERT INTO TITULARIDAD VALUES (27, 'P94928678', '2015-03-09', null);
 
-INSERT INTO TITULARIDAD VALUES (1, '12052808A', '03-12-2002', null);
-INSERT INTO TITULARIDAD VALUES (2, '12052808A', '21-06-2010', null);
-INSERT INTO TITULARIDAD VALUES (3, '01021428K', '30-05-2009', null);
-INSERT INTO TITULARIDAD VALUES (4, '65477863Z', '13-03-2014', null);
-INSERT INTO TITULARIDAD VALUES (5, '38866604P', '22-08-2016', null);
-INSERT INTO TITULARIDAD VALUES (6, '67505087N', '08-04-1999', '19-10-2012');
-INSERT INTO TITULARIDAD VALUES (7, '95244324J', '05-07-2006', null);
-INSERT INTO TITULARIDAD VALUES (8, '05821682Z', '09-11-2007', '21-04-2016');
-INSERT INTO TITULARIDAD VALUES (9, '06588617Z', '31-03-2013', null);
-INSERT INTO TITULARIDAD VALUES (10, '86587415M', '24-09-2006', null);
-INSERT INTO TITULARIDAD VALUES (11, '44729765D', '29-03-2003', null);
-INSERT INTO TITULARIDAD VALUES (12, '27441023E', '23-12-2007' null);
-INSERT INTO TITULARIDAD VALUES (13, '35185176Y', '14-07-2014', null);
-INSERT INTO TITULARIDAD VALUES (14, '38485868M', '04-06-2014', null);
-INSERT INTO TITULARIDAD VALUES (15, '11331763P', '21-06-2004', null);
-INSERT INTO TITULARIDAD VALUES (16, '58996810Q', '13-12-2008', null);
-INSERT INTO TITULARIDAD VALUES (17, '48826660Y', '03-06-2001', '07-05-2012');
-INSERT INTO TITULARIDAD VALUES (18, '59358825B', '15-06-2009', null);
-INSERT INTO TITULARIDAD VALUES (19, '37558515K', '22-02-2002', null);
-INSERT INTO TITULARIDAD VALUES (20, '70595906M', '1-1-2005', null);
-INSERT INTO TITULARIDAD VALUES (21, '88337440Y', '26-03-2001', null);
-INSERT INTO TITULARIDAD VALUES (22, '33167590A', '31-06-2011', '04-03-2016');
-INSERT INTO TITULARIDAD VALUES (23, '26645581N', '24-12-2008', null);
-INSERT INTO TITULARIDAD VALUES (24, '11477333B', '09-08-20010', null);
-INSERT INTO TITULARIDAD VALUES (25, 'A16837239', '02-12-2011', null);
-INSERT INTO TITULARIDAD VALUES (26, 'D48985279', '04-05-2004', null);
-INSERT INTO TITULARIDAD VALUES (27, 'P94928678', '03-09-2015', null);
+INSERT INTO SANCION VALUES (00423, 1, '12052808A', 100.0, '2013-08-03', '005244F', 'Leve', 'Incumplimiento del artículo 10 sobre autorización de tenencia', null, null, null);
+INSERT INTO SANCION VALUES (04784, 2, '12052808A', 100.0, '2015-11-21', '005235F', 'Leve', 'Incumplimiento del artículo 13.3 sobre limpieza urbana y salud pública', null, null, null);
+INSERT INTO SANCION VALUES (05319, 17, '48826660Y', 450.0, '2014-04-10', '004674L', 'Grave', 'Incumplimiento del artículo 9.1 referente a prohibiciones específicas', null, null, null);
+
+select L.numero_licencia, L.tipo_licencia
+from LICENCIA L
+where L.dni_cif = '12052808A';
+
+select S.numero_identificacion, count(*) as nsanciones
+from SANCION S
+where S.numero_identificacion = 2;
+
+select TI.numero_identificacion
+from TITULARIDAD TI
+where TI.dni_cif = '12052808A' and TI.fecha_fin is null
