@@ -53,7 +53,7 @@ CREATE TABLE ANIMAL_CENSADO(
   aptitud varchar(255),
   capa varchar(255),
   numero_censo varchar(255) NOT NULL UNIQUE,
-  numero_microchip int NOT NULL,
+  numero_microchip int NOT NULL UNIQUE,
   anno_nacimiento YEAR,
   PRIMARY KEY (numero_identificacion),
   FOREIGN KEY (numero_identificacion) REFERENCES ANIMAL (numero_identificacion)
@@ -176,10 +176,10 @@ INSERT INTO ANIMAL_CENSADO VALUES (5, 'Abisinio', 'no', 'Blanco', '5', 79246, '2
 INSERT INTO ANIMAL_CENSADO VALUES (6, 'Balinés', 'si', 'Gris', '6', 22228, '1999');
 INSERT INTO ANIMAL_CENSADO VALUES (7, 'Mau Egipcio', 'si', 'Blanco', '7', 99029, '2005');
 INSERT INTO ANIMAL_CENSADO VALUES (8, 'Persa', 'no', 'Blanco', '8', 69995, '2007');
-INSERT INTO ANIMAL_CENSADO VALUES (22, 'Labrador', 'no', 'Amarillo', '9', 69995, '2011');
-INSERT INTO ANIMAL_CENSADO VALUES (23, 'Pastor Alemán', 'no', 'Negro', '10', 69995, '2008');
-INSERT INTO ANIMAL_CENSADO VALUES (26, 'Scottish Fold', 'no', 'Ocre', '11', 69995, '2004');
-INSERT INTO ANIMAL_CENSADO VALUES (27, 'Bengalí', 'no', 'Marrón', '12', 69995, '2015');
+INSERT INTO ANIMAL_CENSADO VALUES (22, 'Labrador', 'no', 'Amarillo', '9', 69985, '2011');
+INSERT INTO ANIMAL_CENSADO VALUES (23, 'Pastor Alemán', 'no', 'Negro', '10', 69975, '2008');
+INSERT INTO ANIMAL_CENSADO VALUES (26, 'Scottish Fold', 'no', 'Ocre', '11', 69965, '2004');
+INSERT INTO ANIMAL_CENSADO VALUES (27, 'Bengalí', 'no', 'Marrón', '12', 69955, '2015');
 
 INSERT INTO LICENCIA VALUES (1, '12052808A', 'Animal peligroso', '1999-10-11');
 INSERT INTO LICENCIA VALUES (2, '01021428K', 'Animal peligroso', '2008-05-07');
