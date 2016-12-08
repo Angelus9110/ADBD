@@ -9,34 +9,108 @@ DROP TABLE IF EXISTS ANIMAL;
 DROP TABLE IF EXISTS LICENCIA;
 DROP TABLE IF EXISTS TITULAR;
 
-CREATE TABLE TITULAR( dni_cif varchar(9) NOT NULL, domicilio varchar(255) NOT NULL,
-cp int, nombre varchar(255), apellidos varchar(255), fecha_nacimiento date,
-nombre_empresa varchar(255), PRIMARY KEY (dni_cif));
+CREATE TABLE TITULAR(
+  dni_cif varchar(9),
+  domicilio varchar(255) NOT NULL,
+  cp int NOT NULL,
+  nombre varchar(255),
+  apellidos varchar(255),
+  fecha_nacimiento date,
+  nombre_empresa varchar(255),
+  PRIMARY KEY (dni_cif),
+  CONSTRAINT persona_fisica_o_juridica CHECK(
+    nombre_empresa is null or (nombre is null and apellidos is null and fecha_nacimiento is null) and
+    nombre_empresa is not null or (nombre is not null and apellidos is not null and fecha_nacimiento is not null)
+  ),
+  CONSTRAINT titular_mayor_edad CHECK(
+    fecha_nacimiento is null or
+    extract(year from current_date) - extract(year from fecha_nacimiento) >= 18
+  )
+);
 
-CREATE TABLE LICENCIA( numero_licencia int NOT NULL, dni_cif varchar(9),
-tipo_licencia ENUM('Animal peligroso','Explotacion'), fecha_expedicion DATE,
-PRIMARY KEY (numero_licencia), FOREIGN KEY (dni_cif) REFERENCES TITULAR(dni_cif));
+CREATE TABLE LICENCIA(
+  numero_licencia int,
+  dni_cif varchar(9) NOT NULL,
+  tipo_licencia ENUM('Animal peligroso','Explotacion') NOT NULL,
+  fecha_expedicion DATE NOT NULL,
+  PRIMARY KEY (numero_licencia),
+  FOREIGN KEY (dni_cif) REFERENCES TITULAR(dni_cif)
+);
 
-CREATE TABLE ANIMAL( numero_identificacion int NOT NULL,
-especie ENUM('Perro','Gato','Otros'), animal_peligroso BOOLEAN, domicilio varchar(255),
-cp int, pais_origen varchar(255), PRIMARY KEY (numero_identificacion));
+CREATE TABLE ANIMAL(
+  numero_identificacion int,
+  especie ENUM('Perro','Gato','Otros') NOT NULL,
+  animal_peligroso BOOLEAN NOT NULL,
+  domicilio varchar(255) NOT NULL,
+  cp int NOT NULL,
+  pais_origen varchar(255) NOT NULL,
+  PRIMARY KEY (numero_identificacion)
+);
 
-CREATE TABLE ANIMAL_CENSADO( numero_identificacion int NOT NULL, raza varchar(255),
-aptitud varchar(255), capa varchar(255), numero_censo varchar(255),
-numero_microchip int, anno_nacimiento YEAR,
-PRIMARY KEY (numero_identificacion), FOREIGN KEY (numero_identificacion) REFERENCES ANIMAL (numero_identificacion));
+CREATE TABLE ANIMAL_CENSADO(
+  numero_identificacion int,
+  raza varchar(255) NOT NULL,
+  aptitud varchar(255),
+  capa varchar(255),
+  numero_censo varchar(255) NOT NULL UNIQUE,
+  numero_microchip int NOT NULL,
+  anno_nacimiento YEAR,
+  PRIMARY KEY (numero_identificacion),
+  FOREIGN KEY (numero_identificacion) REFERENCES ANIMAL (numero_identificacion)
+);
 
-CREATE TABLE TITULARIDAD( numero_identificacion int NOT NULL, dni_cif varchar(9) NOT NULL,
-fecha_inicio DATE NOT NULL, fecha_fin DATE, PRIMARY KEY(numero_identificacion, dni_cif, fecha_inicio),
-FOREIGN KEY(numero_identificacion) REFERENCES ANIMAL (numero_identificacion), FOREIGN KEY (dni_cif) REFERENCES TITULAR (dni_cif));
+CREATE TABLE TITULARIDAD(
+  numero_identificacion int,
+  dni_cif varchar(9),
+  fecha_inicio DATE,
+  fecha_fin DATE,
+  PRIMARY KEY(numero_identificacion, dni_cif, fecha_inicio),
+  FOREIGN KEY(numero_identificacion) REFERENCES ANIMAL (numero_identificacion),
+  FOREIGN KEY (dni_cif) REFERENCES TITULAR (dni_cif)
+);
 
-CREATE TABLE SANCION( numero_sancion int NOT NULL PRIMARY KEY, numero_identificacion int,
-dni_cif varchar(9), cuantia float, fecha_sancion DATE, id_legal_infraccion varchar(255),
-gravedad varchar(255), descripcion varchar(1000),
-tipo_medida_cautelar ENUM('Retirada preventiva','Clausura preventiva','Ninguna'),
-fecha_inicio_medida_cautelar DATE, fecha_fin_medida_cautelar DATE,
-FOREIGN KEY(numero_identificacion, dni_cif)
-REFERENCES TITULARIDAD (numero_identificacion, dni_cif));
+CREATE TABLE SANCION(
+  numero_sancion int PRIMARY KEY,
+  numero_identificacion int NOT NULL,
+  dni_cif varchar(9) NOT NULL,
+  cuantia float NOT NULL,
+  fecha_sancion DATE NOT NULL,
+  id_legal_infraccion varchar(255) NOT NULL,
+  gravedad ENUM('leve', 'grave', 'muy grave') NOT NULL,
+  descripcion varchar(1000),
+  tipo_medida_cautelar ENUM('Retirada preventiva','Clausura preventiva','Ninguna'),
+  fecha_inicio_medida_cautelar DATE,
+  fecha_fin_medida_cautelar DATE,
+  FOREIGN KEY(numero_identificacion, dni_cif) REFERENCES TITULARIDAD (numero_identificacion, dni_cif),
+  CONSTRAINT tiene_medida_cautelar CHECK(
+    (tipo_medida_cautelar is null and fecha_inicio_medida_cautelar is null and fecha_fin_medida_cautelar is null) or
+    (tipo_medida_cautelar is not null and fecha_inicio_medida_cautelar is not null and fecha_fin_medida_cautelar is not null)
+  ),
+  CONSTRAINT cuantias_segun_gravedad CHECK(
+    (gravedad='leve' and cuantia >= 30 and cuantia <= 100) or
+    (gravedad='grave' and cuantia >= 101 and cuantia <= 300) or
+    (gravedad='muy grave' and cuantia >= 301 and cuantia <= 1200)
+  )
+);
+
+/*CREATE ASSERTION titular_con_animal_peligroso_sin_licencia CHECK(
+  (SELECT COUNT(*)
+  FROM TITULARIDAD T, ANIMAL A
+  WHERE T.numero_identificacion=A.numero_identificacion AND A.animal_peligroso=TRUE
+        T.dni_cif not in (SELECT L.dni_cif FROM LICENCIA L WHERE L.tipo_licencia='Animal peligroso')) = 0
+);*/
+
+/*CREATE ASSERTION animales_censados_son_perros_gatos CHECK(
+  (SELECT COUNT(*) FROM ANIMAL A WHERE A.especie='Gato' or A.especie='Perro') =
+  (SELECT COUNT(*) FROM ANIMAL_CENSADO)
+);*/
+
+/*CREATE ASSERTION empresas_sin_licencia_explotacion CHECK(
+  (SELECT COUNT(*)
+  FROM TITULAR T
+  WHERE T.nombre_empresa is not null and
+        T.dni_cif not in (SELECT L.dni_cif FROM LICENCIA WHERE L.tipo_licencia='Explotacion')) = 0
+);*/
 
 
 INSERT INTO TITULAR VALUES ('12052808A','Calle Cerrada Alajuela 37', 13001, 'Gabriel', 'Muñoz Perez', '1975-01-11', null);
