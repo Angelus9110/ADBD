@@ -1,3 +1,0 @@
-2016/09/27
-¿Separar el código postal, el municipio...?
-De momento con el código postal es suficiente.
